@@ -1,9 +1,9 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, {Document, Schema} from 'mongoose';
 
-import { IArcana } from './IArcana';
-import { IType } from './IType';
-import { ISkill } from './ISkill';
-import { IStat } from './IStat';
+import {IArcana} from './IArcana';
+import {IType} from './IType';
+import {ISkill} from './ISkill';
+import {IStat} from './IStat';
 
 export interface IPersona extends Document{
  name: string;
@@ -16,6 +16,8 @@ export interface IPersona extends Document{
  weak: IType[],
  skills: ISkill[],
  stats: IStat,
+ _createdAt: number,
+ _updatedAt: number,
 }
 
 export const personaSchema = new Schema({
@@ -29,6 +31,15 @@ export const personaSchema = new Schema({
  weak:     { type: Schema.Types.ObjectId, ref: 'Type' },
  skills:   { type: Schema.Types.ObjectId, ref: 'Skill'},
  stats:    { type: Schema.Types.ObjectId, ref: 'Stat' },
+ _createdAt: Number,
+ _updatedAt: { type: Number, default: null },
+});
+
+personaSchema.pre('save', function(next){
+ const persona: IPersona = this as IPersona;
+ persona._createdAt = new Date().getDate();
+
+ next();
 });
 
 export const Persona = mongoose.model<IPersona>('Persona', personaSchema);

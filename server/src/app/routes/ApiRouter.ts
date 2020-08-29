@@ -1,6 +1,6 @@
 import express from 'express';
 import IRouter from '../models/IRouter';
-import PersonaRouter from './Persona';
+import PersonaRouter from './routers/PersonaRouter';
 
 
 export default class ApiRouter {

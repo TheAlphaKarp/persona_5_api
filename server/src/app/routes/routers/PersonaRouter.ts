@@ -1,6 +1,6 @@
 import express, {Request, Response} from 'express';
-import IRouter from '../models/IRouter';
-import PersonaController from '../controllers/PersonaController';
+import IRouter from '../../models/IRouter';
+import PersonaController from '../../controllers/PersonaController';
 
 export default class PersonaRouter implements IRouter {
  public router: express.Router;

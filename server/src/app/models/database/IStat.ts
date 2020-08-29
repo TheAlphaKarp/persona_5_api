@@ -6,6 +6,8 @@ export interface IStat extends Document {
  endurance: number,
  agility: number,
  luck: number,
+ _createdAt: number,
+ _updatedAt: number,
 }
 
 export const statSchema = new Schema({
@@ -14,6 +16,15 @@ export const statSchema = new Schema({
  endurance: Number,
  agility: Number,
  luck: Number,
+ _createdAt: Number,
+ _updatedAt: { type: Number, default: null },
+});
+
+statSchema.pre('save', function(next) {
+ const stat = this as IStat;
+ stat._createdAt = new Date().getDate();
+
+ next();
 });
 
 export const Stat = mongoose.model<IStat>('Stat', statSchema);

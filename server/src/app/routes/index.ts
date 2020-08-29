@@ -1,4 +1,4 @@
-import PersonaRouter from './Persona';
+import PersonaRouter from './routers/PersonaRouter';
 
 export {
  PersonaRouter,
